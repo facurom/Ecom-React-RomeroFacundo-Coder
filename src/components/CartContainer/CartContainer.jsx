@@ -15,7 +15,7 @@ const CartContainer = () => {
   const generateOrder = (evt) => {
     evt.preventDefault()
 
-    const order = []
+    const order = {}
     order.buyer = dataForm
     order.item = cartList.map(({ nombre, id, price }) => ({ nombre, id, price }))
 
@@ -59,17 +59,17 @@ const CartContainer = () => {
   }
   return (
     <div>
-      {cartList.map((product) => (
+      {cartList.map( product => 
         <li key={product.id}>
           <img src={product.foto} alt="" className="w-25" />
-          {product.nombre} - Cantidad: {product.cantidad} - Precio{" "}
-          {product.price}
+          {product.nombre} - Cantidad: {product.cantidad} - Precio{product.price}
           <button
             className="btn"
             onClick={() => eliminarItem(product.id)}
           > <i className="bi bi-x-circle"></i></button>
         </li>
-      ))}
+      )}
+      
       {precioTotal() > 0 && <label>El precio total es: {precioTotal()}</label>}<br />
       <form onSubmit= {generateOrder}>
         <div className="form-group w-58">
