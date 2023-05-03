@@ -30,7 +30,7 @@ const ItemDetail = ({ product }) => {
               Seguir Comprando
             </Link>
             <Link className="btn btn-outline-primary " to="/cart">
-              Ir al carrito
+              Ir al carritoo
             </Link>
           </div>
         ) : (
