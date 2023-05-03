@@ -5,16 +5,22 @@ import { gFetch } from "../../helpers/gFetch";
 import ItemDetail from "../ItemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {
+  const [loading, setLoading] = useState(true)
   const[product, setProduct] = useState({})
   const { productoId } = useParams();
   
   useEffect(()=>{
-   const db = getFirestore()
-   const queryDoc = doc (db, 'productos', productoId )
+  //  const db = getFirestore()
+  //  const queryDoc = doc (db, 'productos', productoId )
 
-   getDoc(queryDoc)
-   .then(respuesta => setProduct( { id: respuesta.id, ...respuesta.data()}))
-   .catch (err => console.log(err))
+  //  getDoc(queryDoc)
+  //  .then(respuesta => setProduct( { id: respuesta.id, ...respuesta.data()}))
+  //  .catch (err => console.log(err))
+  fetch('http://localhost:8080/api/productos')
+  .then(resp => resp.json)
+  .then(resp => setProduct(resp.payload))
+  .catch(err => console.log(err))
+  .finally(() => setLoading)
   }, [])
   return (
     <ItemDetail

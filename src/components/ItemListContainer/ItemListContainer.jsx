@@ -17,28 +17,34 @@ const ItemListContainer = ({ saludo }) => {
 
   useEffect(()=>{
     
-    if (categoriaId) {
-      const db = getFirestore ()
-    const queryCollection = collection(db, 'productos')
-    const queryFiltrada = query(queryCollection, where('categoria', '==', categoriaId))
-    getDocs (queryFiltrada)
-    .then(respuesta =>setProducts(respuesta.docs.map(product => ({ id: product.id, ...product.data()}) )))
-    .catch(err => console.log(err))
-    .finally(() => setLoading(false))
+    // if (categoriaId) {
+    //   const db = getFirestore ()
+    // const queryCollection = collection(db, 'productos')
+    // const queryFiltrada = query(queryCollection, where('categoria', '==', categoriaId))
+    // getDocs (queryFiltrada)
+    // .then(respuesta =>setProducts(respuesta.docs.map(product => ({ id: product.id, ...product.data()}) )))
+    // .catch(err => console.log(err))
+    // .finally(() => setLoading(false))
       
-    } else {
-      const db = getFirestore ()
-    const queryCollection = collection(db, 'productos')
+    // } else {
+    //   const db = getFirestore ()
+    // const queryCollection = collection(db, 'productos')
     
-    getDocs(queryCollection)
-    .then(respuesta =>setProducts(respuesta.docs.map(product => ({ id: product.id, ...product.data()}) )))
+    // getDocs(queryCollection)
+    // .then(respuesta =>setProducts(respuesta.docs.map(product => ({ id: product.id, ...product.data()}) )))
+    // .catch(err => console.log(err))
+    // .finally(() => setLoading(false))
+    // }
+    fetch ('http://localhost:8080/api/productos')
+    .then (resp => {
+      console.log({resp})
+      setProducts(resp.payload)})
     .catch(err => console.log(err))
     .finally(() => setLoading(false))
-    }
 
   }, [categoriaId])
 
-  console.log(product)
+  console.log(products)
 
   return (
     <>
