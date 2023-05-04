@@ -37,12 +37,16 @@ const ItemListContainer = ({ saludo }) => {
     // }
     fetch ('http://localhost:8080/api/productos')
     .then (resp => {
-      console.log({resp})
-      setProducts(resp.payload)})
+      if (!res.ok) throw new Error (res.status); 
+      return res.json();
+    })
+    .then((data) =>{
+      setProducts(data);
+    }) 
     .catch(err => console.log(err))
     .finally(() => setLoading(false))
 
-  }, [categoriaId])
+  }, [categoriaId]);
 
   console.log(products)
 
