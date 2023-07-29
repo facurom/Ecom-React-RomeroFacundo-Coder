@@ -17,7 +17,7 @@ import {CartContextProvider } from "./components/CartContext/CartContext";
 
 function App() {
   const [count, setCount] = useState(0);
-  let saludo = "NaturePharma Home";
+  let saludo = "NaturePharmaa Home";
   let saludar = () => alert("Bienvenido a nuestra web");
   return (
     <div>
